@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 800px;
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    color: #1e3c72;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2.5em;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.controls {
+    text-align: center;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#difficulty {
+    padding: 12px 25px;
+    border: 2px solid #1e3c72;
+    border-radius: 10px;
+    font-size: 16px;
+    background: white;
+    color: #1e3c72;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#difficulty:hover {
+    background: #f0f4f8;
+}
+
+#start {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(30, 60, 114, 0.2);
+}
+
+#start:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 60, 114, 0.3);
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 25px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f6f9fc 0%, #f0f4f8 100%);
+    border-radius: 15px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.stat-item {
+    font-size: 18px;
+    color: #1e3c72;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.game-board {
+    display: grid;
+    gap: 12px;
+    margin: 25px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f6f9fc 0%, #f0f4f8 100%);
+    border-radius: 15px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.card {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.card-back {
+    background: white;
+    transform: rotateY(180deg);
+    border: 2px solid #1e3c72;
+    font-size: 2em;
+}
+
+.card.matched .card-back {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+}
+
+.leaderboard {
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #f6f9fc 0%, #f0f4f8 100%);
+    border-radius: 15px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.leaderboard h2 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+#highScores {
+    list-style: none;
+}
+
+#highScores li {
+    padding: 15px;
+    margin: 10px 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    border-left: 4px solid #1e3c72;
+}
+
+#highScores li:hover {
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    #difficulty, #start {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Grid size adjustments remain the same */
+.game-board[data-difficulty="easy"] {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 500px;
+}
+
+.game-board[data-difficulty="medium"] {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 600px;
+}
+
+.game-board[data-difficulty="hard"] {
+    grid-template-columns: repeat(8, 1fr);
+    max-width: 700px;
+}
+
+/* Card size adjustments */
+.game-board[data-difficulty="easy"] .card {
+    height: 100px;
+}
+
+.game-board[data-difficulty="medium"] .card {
+    height: 80px;
+}
+
+.game-board[data-difficulty="hard"] .card {
+    height: 60px;
+}
