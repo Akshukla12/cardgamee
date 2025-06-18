@@ -1,4 +1,4 @@
-# cardgame
+<!-- # cardgame
 
 An interactive memory card game built with HTML, CSS, and JavaScript.
 
@@ -22,4 +22,4 @@ An interactive memory card game built with HTML, CSS, and JavaScript.
 4. Complete the game with highest score
 
 ## Preview
-![Game Preview](screenshots/preview.png)
+![Game Preview](screenshots/preview.png) -->
